@@ -22,6 +22,16 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Portfolio Assistant
+
+This project includes a floating AI portfolio assistant powered by the OpenAI API. Create a local environment file before running the app:
+
+```bash
+cp .env.local.example .env.local
+```
+
+Set `OPENAI_API_KEY` in `.env.local` and optionally override `OPENAI_MODEL` if you want to target a different model.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Learn More

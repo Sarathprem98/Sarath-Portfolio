@@ -1,6 +1,7 @@
 import { experience } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { SectionReveal } from '@/components/section-reveal'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export function Experience() {
   return (
@@ -22,28 +23,40 @@ export function Experience() {
                   <span className="size-2.5 rounded-full bg-gradient-to-br from-brand-blue to-brand-purple" />
                 </span>
 
-                <div className="glass rounded-2xl p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h3 className="text-lg font-semibold">{item.role}</h3>
-                    <span className="font-mono text-xs text-muted-foreground">
+                <Card>
+                  <CardHeader className="flex flex-row items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg font-semibold">{item.role}</h3>
+                      <p className="mt-1 text-sm text-brand-blue">{item.company}</p>
+                    </div>
+                    <span className="rounded-full border border-border/70 bg-secondary/60 px-3 py-1 font-mono text-xs text-muted-foreground">
                       {item.period}
                     </span>
-                  </div>
-                  <p className="mt-1 text-sm text-brand-blue">{item.company}</p>
-                  <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md bg-secondary/60 px-2.5 py-1 font-mono text-xs text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-pretty leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                    <ul className="mt-5 space-y-3 text-sm text-foreground/90">
+                      {item.highlights.map((highlight) => (
+                        <li key={highlight} className="flex gap-3">
+                          <span className="mt-2 size-1.5 rounded-full bg-brand-purple" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-secondary/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </SectionReveal>
             ))}
           </div>

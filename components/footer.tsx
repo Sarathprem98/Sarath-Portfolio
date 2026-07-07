@@ -1,5 +1,6 @@
 import { Github, Linkedin, Twitter } from '@/components/brand-icons'
 import { profile } from '@/lib/data'
+import { Button } from '@/components/ui/button'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -10,10 +11,10 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border px-4 py-12 sm:px-6">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
+    <footer className="relative border-t border-border/70 px-4 py-12 sm:px-6">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div>
-          <a href="#home" className="flex items-center justify-center gap-2 sm:justify-start">
+          <a href="#home" className="flex items-center justify-center gap-3 sm:justify-start">
             <span className="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-brand-blue to-brand-purple text-xs font-bold text-primary-foreground">
               SP
             </span>
@@ -67,8 +68,15 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 max-w-5xl border-t border-border pt-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {profile.name}. Built with Next.js, Tailwind CSS & Motion.
+      <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-4 border-t border-border/70 pt-6 text-center text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <p>
+          © {new Date().getFullYear()} {profile.name}. Built with Next.js 15, Tailwind CSS, shadcn/ui and Motion.
+        </p>
+        <a href="#home">
+          <Button variant="outline" size="sm" className="rounded-full">
+            Back to top
+          </Button>
+        </a>
       </div>
     </footer>
   )

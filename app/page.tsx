@@ -1,3 +1,4 @@
+import { CursorEffects } from '@/components/cursor-effects'
 import { AnimatedBackground } from '@/components/animated-background'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
@@ -5,14 +6,16 @@ import { About } from '@/components/about'
 import { Skills } from '@/components/skills'
 import { Experience } from '@/components/experience'
 import { Projects } from '@/components/projects'
-import { Certifications } from '@/components/certifications'
+import { Achievements } from '@/components/achievements'
 import { GithubStats } from '@/components/github-stats'
 import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
+import { PortfolioAssistantLoader } from '@/components/portfolio-assistant-loader'
 
 export default function Page() {
   return (
     <>
+      <CursorEffects />
       <AnimatedBackground />
       <Navbar />
       <main>
@@ -21,11 +24,12 @@ export default function Page() {
         <Skills />
         <Experience />
         <Projects />
-        <Certifications />
+        <Achievements />
         <GithubStats />
         <Contact />
       </main>
       <Footer />
+      <PortfolioAssistantLoader />
     </>
   )
 }

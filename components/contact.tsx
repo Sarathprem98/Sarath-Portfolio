@@ -1,20 +1,35 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MapPin, Send } from 'lucide-react'
+import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { Github, Linkedin } from '@/components/brand-icons'
 import { profile } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { SectionReveal } from '@/components/section-reveal'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 
 export function Contact() {
   const [sent, setSent] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = e.currentTarget
+    const data = new FormData(form)
+    const name = String(data.get('name') ?? '').trim()
+    const email = String(data.get('email') ?? '').trim()
+    const message = String(data.get('message') ?? '').trim()
+
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`)
+    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`)
+
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
     setSent(true)
-    setTimeout(() => setSent(false), 3500)
-    e.currentTarget.reset()
+    window.setTimeout(() => setSent(false), 3500)
+    form.reset()
   }
 
   return (
@@ -28,49 +43,66 @@ export function Contact() {
 
         <div className="mt-14 grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
           <SectionReveal className="space-y-4">
-            <a
-              href={`mailto:${profile.email}`}
-              className="glass flex items-center gap-4 rounded-2xl p-5 transition-transform hover:-translate-y-1"
-            >
-              <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-blue">
-                <Mail className="size-5" />
-              </span>
-              <div>
-                <p className="text-sm text-muted-foreground">Email</p>
-                <p className="font-medium">{profile.email}</p>
-              </div>
-            </a>
+            <Card>
+              <CardContent className="space-y-4 p-5">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="flex items-center gap-4 rounded-2xl p-0 transition-transform hover:-translate-y-1"
+                >
+                  <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-blue">
+                    <Mail className="size-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="font-medium">{profile.email}</p>
+                  </div>
+                </a>
 
-            <div className="glass flex items-center gap-4 rounded-2xl p-5">
-              <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-purple">
-                <MapPin className="size-5" />
-              </span>
-              <div>
-                <p className="text-sm text-muted-foreground">Location</p>
-                <p className="font-medium">{profile.location}</p>
-              </div>
-            </div>
+                <a
+                  href={`tel:${profile.phone}`}
+                  className="flex items-center gap-4 rounded-2xl p-0 transition-transform hover:-translate-y-1"
+                >
+                  <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-blue">
+                    <Phone className="size-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="font-medium">{profile.phone}</p>
+                  </div>
+                </a>
 
-            <div className="flex gap-3">
-              <a
-                href={profile.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="glass grid size-12 flex-1 place-items-center rounded-2xl text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Github className="size-5" />
-              </a>
-              <a
-                href={profile.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="glass grid size-12 flex-1 place-items-center rounded-2xl text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Linkedin className="size-5" />
-              </a>
-            </div>
+                <div className="flex items-center gap-4 rounded-2xl p-0">
+                  <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-purple">
+                    <MapPin className="size-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="font-medium">{profile.location}</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <a
+                    href={profile.socials.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="GitHub"
+                    className="glass grid h-12 place-items-center rounded-2xl text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Github className="size-5" />
+                  </a>
+                  <a
+                    href={profile.socials.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    className="glass grid h-12 place-items-center rounded-2xl text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Linkedin className="size-5" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </SectionReveal>
 
           <SectionReveal delay={0.1}>
@@ -80,60 +112,56 @@ export function Contact() {
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label
+                  <Label
                     htmlFor="name"
                     className="mb-1.5 block text-sm text-muted-foreground"
                   >
                     Name
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     id="name"
                     name="name"
                     required
-                    className="w-full rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-blue"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label
+                  <Label
                     htmlFor="email"
                     className="mb-1.5 block text-sm text-muted-foreground"
                   >
                     Email
-                  </label>
-                  <input
+                  </Label>
+                  <Input
                     id="email"
                     name="email"
                     type="email"
                     required
-                    className="w-full rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-blue"
                     placeholder="you@example.com"
                   />
                 </div>
               </div>
               <div>
-                <label
+                <Label
                   htmlFor="message"
                   className="mb-1.5 block text-sm text-muted-foreground"
                 >
                   Message
-                </label>
-                <textarea
+                </Label>
+                <Textarea
                   id="message"
                   name="message"
                   required
-                  rows={4}
-                  className="w-full resize-none rounded-xl border border-border bg-secondary/40 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-blue"
                   placeholder="Tell me about your project..."
                 />
               </div>
-              <button
+              <Button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.01]"
+                className="w-full rounded-xl"
               >
                 {sent ? 'Message sent!' : 'Send message'}
                 <Send className="size-4" />
-              </button>
+              </Button>
             </form>
           </SectionReveal>
         </div>

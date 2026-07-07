@@ -14,40 +14,54 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Sarath Prem — Infrastructure Engineer, SDET & Cloud Engineer',
+  metadataBase: new URL('https://sarath-prem-portfolio.vercel.app'),
+  title: 'Sarath Prem — Trainee SDET, Playwright & AI Automation',
   description:
-    'Portfolio of Sarath Prem. I build scalable automation frameworks, maintain enterprise infrastructure, automate testing with Playwright, implement CI/CD pipelines with Jenkins, and work with Google Cloud technologies.',
+    'Portfolio of Sarath Prem, an IT professional with 6+ years of experience in infrastructure operations, test automation, Playwright, TypeScript, API testing, CI/CD, cloud tools, and AI-assisted QA.',
   keywords: [
     'Sarath Prem',
-    'Infrastructure Engineer',
-    'SDET',
-    'Cloud Engineer',
+    'Trainee SDET',
     'Playwright',
+    'AI Automation',
+    'Playwright',
+    'Automation Testing',
+    'API Testing',
+    'SQL',
     'Jenkins',
-    'CI/CD',
+    'Azure DevOps',
     'Google Cloud',
-    'Automation',
+    'Azure',
+    'TypeScript',
+    'QA',
   ],
   authors: [{ name: 'Sarath Prem' }],
   creator: 'Sarath Prem',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Sarath Prem — Infrastructure Engineer, SDET & Cloud Engineer',
+    title: 'Sarath Prem — Trainee SDET, Playwright & AI Automation',
     description:
-      'I build scalable automation frameworks, maintain enterprise infrastructure, and automate testing with Playwright, Jenkins & Google Cloud.',
+      'I build automation with Playwright and TypeScript, support infrastructure operations, and work across API testing, SQL, CI/CD, and cloud technologies.',
     type: 'website',
+    url: '/',
+    siteName: 'Sarath Prem Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sarath Prem — Infrastructure Engineer, SDET & Cloud Engineer',
+    title: 'Sarath Prem — Trainee SDET, Playwright & AI Automation',
     description:
-      'I build scalable automation frameworks, maintain enterprise infrastructure, and automate testing with Playwright, Jenkins & Google Cloud.',
+      'I build automation with Playwright and TypeScript, support infrastructure operations, and work across API testing, SQL, CI/CD, and cloud technologies.',
   },
   generator: 'v0.app',
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0a0a12',
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f7f8fc' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a12' },
+  ],
 }
 
 export default function RootLayout({
@@ -59,6 +73,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} bg-background`}
+      suppressHydrationWarning
     >
       <body className="font-sans antialiased">
         {children}

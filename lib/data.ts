@@ -1,105 +1,158 @@
 export const profile = {
   name: 'Sarath Prem',
   roles: [
-    'Infrastructure Engineer',
-    'SDET',
+    'SDET With AI',
+    'Playwright Automation Engineer',
+    'Agentic AI Automation Engineer',
     'Cloud Engineer',
-    'Automation Architect',
+    'Infrastructure Engineer',
   ],
-  headline: 'Infrastructure Engineer | SDET | Cloud Engineer',
+  headline: 'SDET | Playwright | AI Automation | Infrastructure Engineer',
   description:
-    'I build scalable automation frameworks, maintain enterprise infrastructure, automate testing using Playwright, implement CI/CD pipelines with Jenkins, and work with Google Cloud technologies.',
-  email: 'sarath.prem@example.com',
-  location: 'Bengaluru, India',
+    'IT professional with 6+ years of hands-on experience across Test automation, infrastructure operations, and quality engineering. I build dependable automation with Playwright with TypeScript, strengthen CI/CD delivery using Jenkins & Azure DevOps and support stable systems across cloud and enterprise environments.',
+  email: 'Sarathprem98@gmail.com',
+  phone: '9618997257',
+  location: 'Visakhapatnam',
+  resume: '/Resume_Saratprem.pdf',
+  githubUsername: 'Sarathprem98',
   socials: {
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
-    twitter: 'https://twitter.com',
+    github: 'https://github.com/Sarathprem98',
+    linkedin: 'https://www.linkedin.com/in/sarath-prem-chebiyyam/',
   },
 }
 
 export const about = {
   paragraphs: [
-    'I am an engineer who lives at the intersection of quality, infrastructure, and the cloud. My focus is designing automation systems and platforms that let teams ship faster with confidence.',
-    'From building resilient test frameworks with Playwright to orchestrating CI/CD pipelines and managing enterprise infrastructure on Google Cloud, I care deeply about reliability, observability, and developer experience.',
+    'I am an IT professional with 6+ years of hands-on experience in server monitoring, patch management, and infrastructure operations across Windows Server environments. I have worked with SCOM, SCCM, Azure, VMware, and Office 365 to keep systems stable, secure, and available.',
+    'I also work deeply in test automation using Playwright with TypeScript, supported by SQL, API testing, database testing, performance testing, and manual testing. My focus is building scalable automation frameworks, improving release confidence, and using AI to make QA faster and smarter.',
   ],
   stats: [
     { value: '6+', label: 'Years Experience' },
-    { value: '40+', label: 'Pipelines Built' },
-    { value: '1M+', label: 'Tests Automated' },
-    { value: '99.9%', label: 'Uptime Delivered' },
+    { value: '4', label: 'Career Roles' },
+    { value: '14+', label: 'Core Skills' },
+    { value: '3', label: 'Featured Projects' },
   ],
 }
 
 export const skills: { category: string; items: string[] }[] = [
   {
     category: 'Test Automation',
-    items: ['Playwright', 'Selenium', 'Cypress', 'REST Assured', 'JUnit', 'TestNG'],
+    items: ['Playwright', 'Automation Testing', 'QA with AI', 'Agentic AI Automation', 'API Testing', 'Performance Testing'],
   },
   {
     category: 'CI/CD & DevOps',
-    items: ['Jenkins', 'GitHub Actions', 'Docker', 'Kubernetes', 'Terraform', 'Ansible'],
+    items: ['Jenkins', 'Azure DevOps', 'Docker', 'Git & GitHub', 'CI/CD', 'JMeter'],
   },
   {
     category: 'Cloud & Infrastructure',
-    items: ['Google Cloud', 'GKE', 'Cloud Build', 'Pub/Sub', 'Compute Engine', 'IAM'],
+    items: ['Azure', 'Google Cloud', 'Windows Server', 'VMware', 'SCOM', 'SCCM'],
   },
   {
     category: 'Languages & Tooling',
-    items: ['TypeScript', 'Python', 'Java', 'Bash', 'Go', 'SQL'],
+    items: ['TypeScript', 'SQL', 'Python', 'Node.js', 'Jira', 'Postman'],
   },
 ]
 
+export const currentWork = {
+  title: 'Trainee SDET',
+  items: [
+    'Playwright automation',
+    'AI automation',
+    'API testing',
+    'SQL',
+    'CI/CD',
+    'TypeScript',
+    'Performance testing',
+    'Database testing',
+  ],
+}
+
+export const learning = {
+  title: 'Currently learning',
+  items: ['Cloud - GCP', 'Spec-Driven Development', 'B-MAD Framework', 'OWASP ZAP', 'Burp Suite'],
+}
+
 export const experience = [
   {
-    role: 'Senior Infrastructure Engineer',
-    company: 'Enterprise Cloud Platform',
-    period: '2023 — Present',
+    role: 'Trainee SDET',
+    company: 'Sails Software Inc',
+    period: 'Mar 2026 — Present',
     description:
-      'Lead the design of scalable automation frameworks and manage multi-region infrastructure on Google Cloud, driving reliability and cost efficiency across teams.',
-    tags: ['GKE', 'Terraform', 'Jenkins'],
+      'Working on Playwright automation, AI-assisted QA, API testing, SQL validation, CI/CD, performance testing, and database testing.',
+    tags: ['Playwright', 'TypeScript', 'AI Automation'],
+    highlights: [
+      'Building automation coverage for web and API workflows.',
+      'Supporting release quality through repeatable test and validation practices.',
+      'Applying AI-enabled techniques to improve QA speed and signal quality.',
+    ],
   },
   {
-    role: 'Software Development Engineer in Test',
-    company: 'FinTech Products',
-    period: '2021 — 2023',
+    role: 'Infrastructure Engineer',
+    company: 'Sails Software Inc',
+    period: 'Sep 2022 — Mar 2026',
     description:
-      'Built end-to-end Playwright automation suites and integrated them into CI/CD pipelines, reducing regression cycles from days to hours.',
-    tags: ['Playwright', 'TypeScript', 'CI/CD'],
+      'Handled infrastructure operations and support across Windows Server, Azure, VMware, SCOM, SCCM, and Office 365 environments.',
+    tags: ['Azure', 'VMware', 'Windows Server'],
+    highlights: [
+      'Maintained system health, uptime, and secure operations across enterprise environments.',
+      'Supported patch management, monitoring, and incident troubleshooting workflows.',
+      'Improved operational stability through consistent infrastructure support practices.',
+    ],
   },
   {
-    role: 'Automation Engineer',
-    company: 'SaaS Startup',
-    period: '2019 — 2021',
+    role: 'Data Analyst',
+    company: 'Sails Software Inc',
+    period: 'Aug 2021 — Aug 2022',
     description:
-      'Established the automated testing culture from the ground up, implementing frameworks, dashboards, and quality gates for release confidence.',
-    tags: ['Selenium', 'Python', 'Docker'],
+      'Worked with SQL and reporting workflows to support analysis, data checks, and business-ready insights.',
+    tags: ['SQL', 'Reporting', 'Analysis'],
+    highlights: [
+      'Supported data analysis and structured validation workflows.',
+      'Worked with SQL-based checks and operational reporting.',
+      'Helped teams use data more effectively for decision-making.',
+    ],
+  },
+  {
+    role: 'Support Associate',
+    company: 'Tech Mahindra',
+    period: 'Aug 2019 — Dec 2020',
+    description:
+      'Provided technical support and operational assistance for enterprise users and systems.',
+    tags: ['Support', 'Troubleshooting', 'Operations'],
+    highlights: [
+      'Handled support requests and troubleshooting tasks.',
+      'Contributed to smooth day-to-day IT operations.',
+      'Built a foundation in infrastructure and service support.',
+    ],
   },
 ]
 
 export const projects = [
   {
-    title: 'Playwright Automation Framework',
+    title: 'Amazon',
     description:
-      'A modular, data-driven end-to-end testing framework with parallel execution, rich reporting, and self-healing selectors.',
-    image: '/project-automation.png',
-    tags: ['Playwright', 'TypeScript', 'Allure'],
+      'Delivered exceptional customer support through live chat by resolving customer issues efficiently, maintaining high CSAT scores, and adhering to SLA standards',
+    image: '/project-automation.jpg',
+    tags: ['Live Support', 'Problem Solving', 'Customer Satisfaction'],
+    // outcome: 'Delivered reliable test coverage and faster feedback for release decisions.',
     link: '#',
   },
   {
-    title: 'CI/CD Pipeline Orchestration',
+    title: 'HireTech (Equifax)',
     description:
-      'Enterprise Jenkins pipeline system with reusable shared libraries, automated gates, and blue-green deployments.',
-    image: '/project-cicd.png',
-    tags: ['Jenkins', 'Docker', 'Groovy'],
+      'Payroll Associate at HireTech (Equifax), handling payroll processing, data validation and reporting, and resolving employee payroll queries while ensuring accuracy and compliance',
+    image: '/project-cicd.jpg',
+    tags: ['Payroll Processing', 'Data Analysis', 'Stakeholder Support'],
+    outcome: 'Improved verification confidence across key business processes.',
     link: '#',
   },
   {
-    title: 'Cloud Infrastructure Platform',
+    title: 'CSI Web',
     description:
-      'Infrastructure-as-code platform on Google Cloud provisioning GKE clusters, networking, and observability by default.',
+      'Worked as an Infrastructure Engineer at CSI Web, managing server monitoring, patch management, incident resolution, and banking infrastructure support to ensure secure, stable, and high-availability systems',
     image: '/project-cloud.png',
-    tags: ['Google Cloud', 'Terraform', 'GKE'],
+    tags: ['Server Monitoring', 'Server Patching', 'Alert Management'],
+    outcome: 'Helped maintain dependable quality coverage for releases.',
     link: '#',
   },
 ]
@@ -130,15 +183,15 @@ export const certifications = [
 export const githubStats = {
   username: '@sarathprem',
   stats: [
-    { value: '1.2k', label: 'Contributions' },
-    { value: '48', label: 'Repositories' },
-    { value: '320', label: 'Stars' },
-    { value: '85', label: 'Pull Requests' },
+    { value: '6+', label: 'Years in Tech' },
+    { value: '3', label: 'Featured Projects' },
+    { value: '4', label: 'Career Roles' },
+    { value: '14+', label: 'Core Skills' },
   ],
   languages: [
-    { name: 'TypeScript', percent: 42 },
-    { name: 'Python', percent: 28 },
+    { name: 'TypeScript', percent: 38 },
+    { name: 'SQL', percent: 26 },
+    { name: 'Python', percent: 18 },
     { name: 'Java', percent: 18 },
-    { name: 'Go', percent: 12 },
   ],
 }
