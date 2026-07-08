@@ -4,7 +4,7 @@ import { ScrollProgress } from '@/components/scroll-progress'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
-import { Skills } from '@/components/skills'
+import { SkillsLazySection } from '@/components/skills-lazy'
 import { Experience } from '@/components/experience'
 import { Projects } from '@/components/projects'
 import { Achievements } from '@/components/achievements'
@@ -23,7 +23,7 @@ export default function Page() {
       <main>
         <Hero />
         <About />
-        <Skills />
+        <SkillsLazySection />
         <Experience />
         <Projects />
         <Achievements />
