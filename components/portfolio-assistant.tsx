@@ -279,7 +279,7 @@ export function PortfolioAssistant() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold tracking-tight text-white">
-                      Sarath's AI Bot
+                      Sarath&apos;s AI Bot
                     </p>
                     <p className="text-xs text-white/65">
                       {/* Ask about skills, projects, certifications, resume, or contact details */}

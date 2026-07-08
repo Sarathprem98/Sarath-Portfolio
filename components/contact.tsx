@@ -6,6 +6,7 @@ import { Github, Linkedin } from '@/components/brand-icons'
 import { profile } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
 import { SectionReveal } from '@/components/section-reveal'
+import { MagneticButton } from '@/components/magnetic-button'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -155,13 +156,15 @@ export function Contact() {
                   placeholder="Tell me about your project..."
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full rounded-xl"
-              >
-                {sent ? 'Message sent!' : 'Send message'}
-                <Send className="size-4" />
-              </Button>
+              <MagneticButton className="flex">
+                <Button
+                  type="submit"
+                  className="w-full rounded-xl"
+                >
+                  {sent ? 'Message sent!' : 'Send message'}
+                  <Send className="size-4" />
+                </Button>
+              </MagneticButton>
             </form>
           </SectionReveal>
         </div>

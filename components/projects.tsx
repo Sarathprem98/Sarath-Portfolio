@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { motion, useReducedMotion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 import { SectionHeading } from '@/components/section-heading'
@@ -7,6 +10,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 
 export function Projects() {
+  const prefersReducedMotion = useReducedMotion()
+
   return (
     <section id="projects" className="relative px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-5xl">
@@ -23,7 +28,13 @@ export function Projects() {
               delay={i * 0.08}
               className="group h-full"
             >
-              <Card className="flex h-full flex-col overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
+              <motion.div
+                className="h-full"
+                whileHover={prefersReducedMotion ? undefined : { y: -8 }}
+                whileTap={prefersReducedMotion ? undefined : { scale: 0.99 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+              >
+              <Card className="flex h-full flex-col overflow-hidden">
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={project.image || '/placeholder.svg'}
@@ -73,6 +84,7 @@ export function Projects() {
                   </a>
                 </CardContent>
               </Card>
+              </motion.div>
             </SectionReveal>
           ))}
         </div>

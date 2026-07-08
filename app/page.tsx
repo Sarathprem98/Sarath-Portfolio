@@ -1,5 +1,6 @@
 import { CursorEffects } from '@/components/cursor-effects'
 import { AnimatedBackground } from '@/components/animated-background'
+import { ScrollProgress } from '@/components/scroll-progress'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
@@ -15,6 +16,7 @@ import { PortfolioAssistantLoader } from '@/components/portfolio-assistant-loade
 export default function Page() {
   return (
     <>
+      <ScrollProgress />
       <CursorEffects />
       <AnimatedBackground />
       <Navbar />

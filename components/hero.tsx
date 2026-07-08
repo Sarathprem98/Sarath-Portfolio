@@ -1,11 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
 import { ArrowDown, Cloud, Download, TerminalSquare, TestTube2 } from 'lucide-react'
 import { Github, Linkedin } from '@/components/brand-icons'
 import { profile } from '@/lib/data'
 import { TypingEffect } from '@/components/typing-effect'
+import { MagneticButton } from '@/components/magnetic-button'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -22,68 +24,112 @@ const highlights = [
   'Cloud operations',
 ]
 
+const textContainer = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+}
+
+const textItem = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0 },
+}
+
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 80])
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -70])
+  const iconY = useTransform(scrollYProgress, [0, 1], [0, -42])
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative flex min-h-screen items-center px-4 pt-28 pb-16 sm:px-6"
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+          style={prefersReducedMotion ? undefined : { y: heroY }}
+          variants={textContainer}
+          initial={prefersReducedMotion ? false : 'hidden'}
+          animate="show"
         >
+          <motion.div variants={textItem}>
           <Badge className="bg-secondary/70 px-4 py-1.5 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
             Available for new opportunities
           </Badge>
+          </motion.div>
 
-          <h1 className="mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+          <motion.h1
+            variants={textItem}
+            className="mt-6 max-w-3xl text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+          >
             {profile.name}
-          </h1>
+          </motion.h1>
 
-          <p className="mt-4 min-h-[2rem] text-lg font-medium text-foreground/95 sm:text-2xl">
+          <motion.p
+            variants={textItem}
+            className="mt-4 min-h-[2rem] text-lg font-medium text-foreground/95 sm:text-2xl"
+          >
             <TypingEffect words={profile.roles} />
-          </p>
+          </motion.p>
 
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
+          <motion.p
+            variants={textItem}
+            className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
+          >
             {profile.description}
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <motion.div variants={textItem} className="mt-8 flex flex-wrap gap-3">
             <a href="#projects">
-              <Button size="lg" className="rounded-xl">
-                View projects
-                <ArrowDown className="size-4" />
-              </Button>
+              <MagneticButton className="inline-flex">
+                <Button size="lg" className="rounded-xl">
+                  View projects
+                  <ArrowDown className="size-4" />
+                </Button>
+              </MagneticButton>
             </a>
             <a
               href={profile.resume}
               download="Sarath_Prem_Resume.pdf"
             >
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-xl"
-              >
-                <Download className="size-4" />
-                Download Resume
-              </Button>
+              <MagneticButton className="inline-flex">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-xl"
+                >
+                  <Download className="size-4" />
+                  Download Resume
+                </Button>
+              </MagneticButton>
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          <motion.div variants={textItem} className="mt-8 flex flex-wrap gap-2">
             {highlights.map((item) => (
-              <span
+              <motion.span
                 key={item}
                 className="rounded-full border border-border/70 bg-secondary/45 px-3 py-1.5 text-sm text-muted-foreground"
+                whileHover={prefersReducedMotion ? undefined : { y: -3 }}
               >
                 {item}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-8 flex items-center gap-3">
+          <motion.div variants={textItem} className="mt-8 flex items-center gap-3">
             <a
               href={profile.socials.github}
               target="_blank"
@@ -102,11 +148,12 @@ export function Hero() {
             >
               <Linkedin className="size-5" />
             </a>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
           className="relative mx-auto w-full max-w-xl"
+          style={prefersReducedMotion ? undefined : { y: imageY }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
@@ -134,12 +181,16 @@ export function Hero() {
                     ['End-to-end coverage', 'Testing'],
                     ['Scalable systems', 'Cloud'],
                   ].map(([title, label]) => (
-                    <div key={title} className="glass rounded-2xl p-4 text-left">
+                    <motion.div
+                      key={title}
+                      className="glass rounded-2xl p-4 text-left"
+                      whileHover={prefersReducedMotion ? undefined : { y: -5 }}
+                    >
                       <p className="text-sm font-medium text-foreground">{title}</p>
                       <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                         {label}
                       </p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -147,14 +198,15 @@ export function Hero() {
           </Card>
 
           {floatingIcons.map(({ Icon, className, delay }, i) => (
-            <div
+            <motion.div
               key={i}
               className={`animate-float absolute ${className} glass grid size-12 place-items-center rounded-2xl text-brand-blue`}
-              style={{ animationDelay: delay }}
+              style={prefersReducedMotion ? { animationDelay: delay } : { animationDelay: delay, y: iconY }}
+              whileHover={prefersReducedMotion ? undefined : { y: -8, rotate: 4 }}
               aria-hidden="true"
             >
               <Icon className="size-5" />
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

@@ -1,3 +1,6 @@
+'use client'
+
+import { motion, useReducedMotion } from 'motion/react'
 import { Trophy } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { SectionReveal } from '@/components/section-reveal'
@@ -22,6 +25,8 @@ const achievements = [
 ]
 
 export function Achievements() {
+  const prefersReducedMotion = useReducedMotion()
+
   return (
     <section id="achievements" className="relative px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-5xl">
@@ -38,11 +43,19 @@ export function Achievements() {
               delay={index * 0.05}
               className="h-full"
             >
-              <Card className="h-full transition-transform hover:-translate-y-1">
+              <motion.div
+                className="h-full"
+                whileHover={prefersReducedMotion ? undefined : { y: -7 }}
+                transition={{ duration: 0.24, ease: 'easeOut' }}
+              >
+              <Card className="h-full">
                 <CardContent className="flex h-full flex-col gap-4 p-6">
-                  <span className="grid size-11 place-items-center rounded-xl bg-gradient-to-br from-brand-blue/20 to-brand-purple/20 text-brand-blue">
+                  <motion.span
+                    className="grid size-11 place-items-center rounded-xl bg-gradient-to-br from-brand-blue/20 to-brand-purple/20 text-brand-blue"
+                    whileHover={prefersReducedMotion ? undefined : { rotate: -5, scale: 1.08 }}
+                  >
                     <Trophy className="size-5" />
-                  </span>
+                  </motion.span>
                   <div>
                     <h3 className="text-lg font-semibold">{item.title}</h3>
                     <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
@@ -51,6 +64,7 @@ export function Achievements() {
                   </div>
                 </CardContent>
               </Card>
+              </motion.div>
             </SectionReveal>
           ))}
         </div>
