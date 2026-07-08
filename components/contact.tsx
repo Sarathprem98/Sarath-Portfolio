@@ -61,14 +61,18 @@ export function Contact() {
 
                 <a
                   href={`tel:${profile.phone}`}
-                  className="flex items-center gap-4 rounded-2xl p-0 transition-transform hover:-translate-y-1"
+                  className="group flex items-center gap-4 rounded-2xl p-0 transition-transform hover:-translate-y-1"
                 >
                   <span className="grid size-11 place-items-center rounded-xl bg-secondary/60 text-brand-blue">
                     <Phone className="size-5" />
                   </span>
                   <div>
                     <p className="text-sm text-muted-foreground">Phone</p>
-                    <p className="font-medium">{profile.phone}</p>
+                    <p className="font-medium">
+                      <span className="inline-block select-none blur-sm transition-all duration-300 group-hover:blur-none group-hover:select-text">
+                        {profile.phone}
+                      </span>
+                    </p>
                   </div>
                 </a>
 

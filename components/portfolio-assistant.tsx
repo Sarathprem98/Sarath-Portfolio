@@ -32,19 +32,15 @@ type ApiChatMessage = {
 }
 
 const suggestions = [
-  // 'Tell me about yourself',
   'What projects have you worked on?',
-//   'Explain your Playwright experience',
   'What cloud technologies do you know?',
-//   'What is your infrastructure experience?',
-//   'What DevOps tools do you use?',
-//   'Show my certifications',
+  'What certifications do you have?',
   'Where can I download your resume?',
   'How can I contact you?',
 ]
 
 const welcomeMessage =
-  'Hi, I am Sarath\'s AI assistant. Ask me about experience, skills, projects, certifications, resume details, or contact information.'
+  'Hi, I am Sarath\'s portfolio assistant. Ask me about experience, skills, projects, certifications, resume details, or contact information.'
 
 const initialMessages: ChatMessage[] = [
   {
