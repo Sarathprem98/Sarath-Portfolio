@@ -40,7 +40,7 @@ const suggestions = [
 ]
 
 const welcomeMessage =
-  'Hi, I am Sarath\'s portfolio assistant. Ask me about experience, skills, projects, certifications, resume details, or contact information.'
+  'Hi, I am Sarath\'s portfolio assistant. Ask me about experience, skills, projects, resume details, or contact information.'
 
 const initialMessages: ChatMessage[] = [
   {
