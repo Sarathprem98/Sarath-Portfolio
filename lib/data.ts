@@ -159,24 +159,28 @@ export const projects = [
 
 export const certifications = [
   {
-    title: 'Google Cloud Professional Cloud Architect',
+    title: 'Google Cloud Associate Cloud Engineer',
     issuer: 'Google Cloud',
     year: '2024',
+    hidden: true,
   },
   {
     title: 'Google Cloud Associate Cloud Engineer',
     issuer: 'Google Cloud',
     year: '2023',
+    hidden: true,
   },
   {
     title: 'Certified Kubernetes Administrator (CKA)',
     issuer: 'CNCF',
     year: '2023',
+    hidden: true,
   },
   {
-    title: 'ISTQB Advanced Test Automation Engineer',
+    title: 'ISTQB Foundation Test Automation Engineer',
     issuer: 'ISTQB',
     year: '2022',
+    hidden: true,
   },
 ]
 

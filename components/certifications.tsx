@@ -5,6 +5,12 @@ import { SectionReveal } from '@/components/section-reveal'
 import { Card, CardContent } from '@/components/ui/card'
 
 export function Certifications() {
+  const visibleCertifications = certifications.filter((cert) => !cert.hidden)
+
+  if (!visibleCertifications.length) {
+    return null
+  }
+
   return (
     <section id="certifications" className="relative px-4 py-24 sm:px-6">
       <div className="mx-auto max-w-5xl">
@@ -14,7 +20,7 @@ export function Certifications() {
         />
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2">
-          {certifications.map((cert, i) => (
+          {visibleCertifications.map((cert, i) => (
             <SectionReveal
               key={cert.title}
               delay={i * 0.05}

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { MagneticButton } from '@/components/magnetic-button'
 import { Button } from '@/components/ui/button'
+import { certifications } from '@/lib/data'
 
 const links = [
   { label: 'About', href: '#about' },
@@ -21,6 +22,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('#home')
+  const navLinks = links.filter(
+    (link) => link.href !== '#certifications' || certifications.some((cert) => !cert.hidden),
+  )
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -30,7 +34,7 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    const sections = ['#home', ...links.map((link) => link.href)]
+    const sections = ['#home', ...navLinks.map((link) => link.href)]
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting)
@@ -76,7 +80,7 @@ export function Navbar() {
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -130,7 +134,7 @@ export function Navbar() {
         >
           <div className="glass overflow-hidden rounded-2xl p-3">
             <ul className="flex flex-col gap-1">
-              {links.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}

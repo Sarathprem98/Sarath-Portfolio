@@ -24,6 +24,8 @@ const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX_REQUESTS = 8
 const rateLimitStore = new Map<string, RateLimitRecord>()
 
+const visibleCertifications = certifications.filter((certification) => !certification.hidden)
+
 const systemPrompt = `You are a Portfolio Assistant. Your only responsibility is to answer questions related to my professional portfolio.
 
 You MUST answer ONLY questions about:
@@ -74,7 +76,7 @@ Projects:
 ${projects.map((project) => `- ${project.title}: ${project.description}`).join('\n')}
 
 Certifications:
-${certifications.map((certification) => `- ${certification.title} (${certification.issuer}, ${certification.year})`).join('\n')}
+${visibleCertifications.map((certification) => `- ${certification.title} (${certification.issuer}, ${certification.year})`).join('\n')}
 
 Resume:
 - The resume is available at ${profile.resume}
