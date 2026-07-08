@@ -114,8 +114,8 @@ const TechnologyCardItem = memo(function TechnologyCardItem({ category, name, ic
         <div className="absolute inset-0 rounded-[inherit] border border-transparent bg-[linear-gradient(120deg,rgba(59,130,246,0.24),rgba(168,85,247,0.18))] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
 
         <div className="relative flex flex-col items-center gap-3">
-          <div className="flex size-14 items-center justify-center rounded-2xl border border-border/70 bg-background/70 shadow-inner transition duration-200 group-hover:scale-105 group-hover:border-brand-blue/35 group-hover:bg-background/90">
-            <SkillLogo src={iconSrc} alt={iconAlt} className="size-12 shrink-0 object-contain transition-transform duration-200 group-hover:scale-105" />
+          <div className="flex size-13 items-center justify-center rounded-2xl border border-border/70 bg-background/70 shadow-inner transition duration-200 group-hover:scale-105 group-hover:border-brand-blue/35 group-hover:bg-background/90">
+            <SkillLogo src={iconSrc} alt={iconAlt} className="size-13 shrink-0 object-contain transition-transform duration-200 group-hover:scale-105" />
           </div>
 
           <div className="space-y-1.5">
