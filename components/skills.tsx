@@ -109,20 +109,20 @@ const TechnologyCardItem = memo(function TechnologyCardItem({ category, name, ic
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className="group h-full cursor-pointer"
     >
-      <Card className="relative flex h-full min-h-[160px] items-center justify-center overflow-hidden rounded-[28px] border border-border/70 bg-card/75 px-4 py-5 text-center shadow-[0_18px_45px_rgba(15,23,42,0.12)] backdrop-blur-xl transition duration-200 ease-out">
+      <Card className="relative flex h-full min-h-[120px] items-center justify-center overflow-hidden rounded-[20px] border border-border/70 bg-card/75 px-3 py-3 text-center shadow-[0_12px_30px_rgba(15,23,42,0.12)] backdrop-blur-xl transition duration-200 ease-out sm:min-h-[160px] sm:rounded-[28px] sm:px-4 sm:py-5 sm:shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.16),transparent_60%),radial-gradient(circle_at_bottom,rgba(168,85,247,0.14),transparent_55%)] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
         <div className="absolute inset-0 rounded-[inherit] border border-transparent bg-[linear-gradient(120deg,rgba(59,130,246,0.24),rgba(168,85,247,0.18))] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
 
         <div className="relative flex flex-col items-center gap-3">
-          <div className="flex size-13 items-center justify-center rounded-2xl border border-border/70 bg-background/70 shadow-inner transition duration-200 group-hover:scale-105 group-hover:border-brand-blue/35 group-hover:bg-background/90">
-            <SkillLogo src={iconSrc} alt={iconAlt} className="size-13 shrink-0 object-contain transition-transform duration-200 group-hover:scale-105" />
+          <div className="flex size-10 items-center justify-center rounded-xl border border-border/70 bg-background/70 shadow-inner transition duration-200 group-hover:scale-105 group-hover:border-brand-blue/35 group-hover:bg-background/90 sm:size-13 sm:rounded-2xl">
+            <SkillLogo src={iconSrc} alt={iconAlt} className="size-10 shrink-0 object-contain transition-transform duration-200 group-hover:scale-105 sm:size-13" />
           </div>
 
-          <div className="space-y-1.5">
-            <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-muted-foreground">
+          <div className="space-y-1">
+            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground sm:text-[10px] sm:tracking-[0.26em]">
               {category}
             </p>
-            <h3 className="text-balance text-[0.92rem] font-semibold leading-tight text-foreground sm:text-sm">
+            <h3 className="text-balance text-[0.78rem] font-semibold leading-tight text-foreground sm:text-[0.92rem] sm:text-sm">
               {name}
             </h3>
           </div>
@@ -159,7 +159,7 @@ export function Skills() {
         </motion.div>
 
         <motion.div
-          className="mt-14 grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
+          className="mt-14 grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 md:grid-cols-4 lg:grid-cols-6"
           variants={containerVariants}
           initial={prefersReducedMotion ? false : 'hidden'}
           whileInView={prefersReducedMotion ? undefined : 'show'}
