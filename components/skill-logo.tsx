@@ -1,17 +1,12 @@
 import Image from 'next/image'
-import { memo, type ComponentPropsWithoutRef, useMemo } from 'react'
+import { memo, type ComponentPropsWithoutRef } from 'react'
 
 type SkillLogoProps = Omit<ComponentPropsWithoutRef<typeof Image>, 'src' | 'alt'> & {
-  svg: string
+  src: string
   alt: string
 }
 
-function SkillLogoComponent({ svg, alt, className, ...props }: SkillLogoProps) {
-  const src = useMemo(
-    () => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
-    [svg],
-  )
-
+function SkillLogoComponent({ src, alt, className, ...props }: SkillLogoProps) {
   return (
     <Image
       src={src}
