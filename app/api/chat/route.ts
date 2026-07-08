@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
 
         if (!apiKey) {
             return NextResponse.json(
-                { error: "GEMINI_API_KEY is not configured on the server." },
+                { error: "API_KEY is not configured on the server." },
                 { status: 500 }
             );
         }
