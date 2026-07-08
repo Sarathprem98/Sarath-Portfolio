@@ -37,6 +37,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Sarath Prem' }],
   creator: 'Sarath Prem',
+  icons: {
+    icon: [
+      { url: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   alternates: {
     canonical: '/',
   },
