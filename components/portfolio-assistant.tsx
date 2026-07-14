@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { profile } from '@/lib/data'
 
 type ChatRole = 'user' | 'assistant'
 
@@ -34,11 +35,13 @@ type ApiChatMessage = {
 const suggestions = [
   'Tell me about yourself?',
   'Projects you worked on?',
-  'What are you learning?',
+  'Current learnings?',
   'What is your Tech-Stack?',
   'Download your resume',
   'How can I contact you?',
 ]
+
+const RESUME_SUGGESTION = 'Download your resume'
 
 const welcomeMessage =
   'Hi, I am Sarath\'s AI assistant. Ask me about experience, skills, projects, resume details, or contact information.'
@@ -182,6 +185,32 @@ export function PortfolioAssistant() {
     }
   }
 
+  const downloadResume = () => {
+    setOpen(true)
+    setError(null)
+
+    const link = document.createElement('a')
+    link.href = profile.resume
+    link.download = 'Sarath_Prem_Resume.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    setMessages((currentMessages) => [
+      ...currentMessages,
+      {
+        id: crypto.randomUUID(),
+        role: 'user',
+        content: RESUME_SUGGESTION,
+      },
+      {
+        id: crypto.randomUUID(),
+        role: 'assistant',
+        content: 'Your download should be starting now. Here it is again if you need it: [Sarath_Prem_Resume.pdf](' + profile.resume + ')',
+      },
+    ])
+  }
+
   const clearChat = () => {
     setMessages(initialMessages)
     setInput('')
@@ -319,7 +348,11 @@ export function PortfolioAssistant() {
                           <button
                             key={suggestion}
                             type="button"
-                            onClick={() => void sendMessage(suggestion)}
+                            onClick={() =>
+                              suggestion === RESUME_SUGGESTION
+                                ? downloadResume()
+                                : void sendMessage(suggestion)
+                            }
                             className="rounded-full border border-white/10 bg-white/6 px-3 py-2 text-left text-xs leading-5 text-white/84 transition hover:border-white/20 hover:bg-white/12 hover:text-white"
                           >
                             {suggestion}

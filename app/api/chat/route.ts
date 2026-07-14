@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from "openai";
 
-import { about, certifications, experience, projects, profile, skills } from '@/lib/data'
+import { about, certifications, experience, learning, projects, profile, skills } from '@/lib/data'
 
 export const runtime = 'nodejs'
 
@@ -39,6 +39,7 @@ You MUST answer ONLY questions about:
 - Career summary
 - Professional roles and responsibilities
 - Contact information (if available in the portfolio)
+- Current learnings / technologies currently being learned
 
 If the user asks ANYTHING outside the portfolio domain, you MUST NOT answer it. Instead, respond exactly with:
 "I can only answer questions related to this portfolio, such as experience, skills, projects, education, resume, and professional achievements."
@@ -74,6 +75,9 @@ ${skills.flatMap((group) => group.items).join(', ')}
 
 Projects:
 ${projects.map((project) => `- ${project.title}: ${project.description}`).join('\n')}
+
+Currently Learning:
+${learning.items.join(', ')}
 
 Certifications:
 ${visibleCertifications.map((certification) => `- ${certification.title} (${certification.issuer}, ${certification.year})`).join('\n')}
