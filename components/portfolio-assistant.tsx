@@ -43,6 +43,47 @@ const suggestions = [
 
 const RESUME_SUGGESTION = 'Download your resume'
 
+type HintMessage = {
+  title: string
+  body: string
+}
+
+const hintMessages: HintMessage[] = [
+  {
+    title: 'Hey, there!',
+    body: "I'm Sarath's personal chat-bot. Click here and ask me questions about the portfolio!",
+  },
+  {
+    title: 'Did you know?',
+    body: 'I can walk you through the projects Sarath has shipped — just ask "Projects you worked on?"',
+  },
+  {
+    title: 'Psst...',
+    body: "I can pull up Sarath's resume for you right now. Try the 'Download your resume' prompt!",
+  },
+  {
+    title: 'Curious?',
+    body: "Ask me about Sarath's tech stack or what he's currently learning — I know it all.",
+  },
+  {
+    title: 'Need to connect?',
+    body: 'Just ask "How can I contact you?" and I\'ll share the best way to reach Sarath.',
+  },
+  {
+    title: 'One more thing!',
+    body: "I'm always happy to answer questions about experience, skills, or certifications too.",
+  },
+]
+
+function shuffle<T>(items: T[]): T[] {
+  const copy = [...items]
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1))
+    ;[copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]]
+  }
+  return copy
+}
+
 const welcomeMessage =
   'Hi, I am Sarath\'s AI assistant. Ask me about experience, skills, projects, resume details, or contact information.'
 
@@ -61,8 +102,16 @@ export function PortfolioAssistant() {
   const [loading, setLoading] = useState(false)
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showHint, setShowHint] = useState(false)
+  const [hintDismissed, setHintDismissed] = useState(false)
+  const [hintIndex, setHintIndex] = useState(0)
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const hintSegmentRef = useRef(0)
+  const shuffledHints = useMemo(
+    () => [hintMessages[0], ...shuffle(hintMessages.slice(1))],
+    [],
+  )
 
   const hasConversation = useMemo(
     () => messages.some((message) => message.role === 'user'),
@@ -101,6 +150,42 @@ export function PortfolioAssistant() {
 
     window.addEventListener('keydown', handleEscape)
     return () => window.removeEventListener('keydown', handleEscape)
+  }, [open])
+
+  useEffect(() => {
+    if (open || hintDismissed) {
+      return
+    }
+
+    const SCROLL_SEGMENT = 500
+
+    const handleScroll = () => {
+      const segment = Math.floor(window.scrollY / SCROLL_SEGMENT)
+      if (segment > 0 && segment !== hintSegmentRef.current) {
+        hintSegmentRef.current = segment
+        setHintIndex((current) => (current + 1) % shuffledHints.length)
+        setShowHint(true)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [open, hintDismissed, shuffledHints.length])
+
+  useEffect(() => {
+    if (!showHint) {
+      return
+    }
+
+    const timer = window.setTimeout(() => setShowHint(false), 9000)
+    return () => window.clearTimeout(timer)
+  }, [showHint, hintIndex])
+
+  useEffect(() => {
+    if (open) {
+      setShowHint(false)
+      setHintDismissed(true)
+    }
   }, [open])
 
   const sendMessage = async (content: string) => {
@@ -234,6 +319,54 @@ export function PortfolioAssistant() {
 
   return (
     <>
+      <AnimatePresence>
+        {showHint && !open ? (
+          <motion.div
+            key={`assistant-hint-${hintIndex}`}
+            initial={{ opacity: 0, y: 12, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.92 }}
+            transition={{ duration: 0.28, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="fixed right-4 bottom-[5.5rem] z-50 w-64 sm:right-6 sm:bottom-[6.5rem]"
+          >
+            <motion.button
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+              type="button"
+              onClick={() => {
+                setOpen(true)
+                setShowHint(false)
+                setHintDismissed(true)
+              }}
+              className="glass relative w-full rounded-2xl border border-white/15 bg-slate-950/85 px-4 py-3 text-left text-sm text-white shadow-[0_18px_60px_rgba(15,23,42,0.4)] backdrop-blur-2xl transition hover:border-white/25 hover:bg-slate-950/95"
+            >
+              <span
+                aria-hidden
+                onClick={(event) => {
+                  event.stopPropagation()
+                  setShowHint(false)
+                  setHintDismissed(true)
+                }}
+                className="absolute right-2 top-2 grid size-5 place-items-center rounded-full text-white/50 transition hover:bg-white/10 hover:text-white"
+              >
+                <X className="size-3" />
+              </span>
+              <span className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-brand-blue">
+                <Sparkles className="size-3.5" />
+                {shuffledHints[hintIndex].title}
+              </span>
+              <span className="block pr-4 text-xs leading-5 text-white/80">
+                {shuffledHints[hintIndex].body}
+              </span>
+              <span
+                aria-hidden
+                className="absolute -bottom-2 right-8 size-4 rotate-45 border-b border-r border-white/15 bg-slate-950/85"
+              />
+            </motion.button>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
       <motion.button
         type="button"
         aria-label={open ? 'Close portfolio assistant' : 'Open portfolio assistant'}
